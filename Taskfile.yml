@@ -1,0 +1,19 @@
+version: '3'
+
+tasks:
+    dev:
+        cmds:
+            - HTTP_PORT=8000 HTTPS_PORT=4443 HTTP3_PORT=4443 docker compose up --wait
+    dev-b:
+        cmds:
+            - HTTP_PORT=8000 HTTPS_PORT=4443 HTTP3_PORT=4443 docker compose up --wait --build
+    php:
+        cmds:
+            - docker compose exec php sh
+    db:
+        cmds:
+            - docker compose exec database sh
+
+    doc-up:
+        cmds:
+            - docker compose exec php bin/console doctrine:schema:update --force
